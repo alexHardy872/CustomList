@@ -12,25 +12,37 @@ namespace CustomList
         {
 
 
-            CustomList<int> customList =  new CustomList<int>();
+            CustomList<int> testList = new CustomList<int>();
 
-            customList.Add(1);
-            customList.Add(2);
-            customList.Add(3);
-            customList.RemoveAt(0);
+            CustomList<int> testList2 = new CustomList<int>();
 
-            Console.WriteLine(customList[0]);
-            Console.WriteLine(customList[1]);
-            Console.WriteLine(customList[2]);
-        
+            CustomList<int> testList3 = new CustomList<int>();
+
+            testList3.Add(1);
+            testList3.Add(3);
+            testList3.Add(5);
+
+            testList3.Add(2);
+            testList3.Add(4);
+            testList3.Add(6);
+
+            testList.Add(1);
+            testList.Add(3);
+            testList.Add(5);
+
+            testList2.Add(2);
+            testList2.Add(4);
+            testList2.Add(6);
+
+            CustomList<int> zipped = testList.Zip(testList2);
+            Console.WriteLine(zipped[0]);
+            Console.WriteLine(zipped[1]);
+            Console.WriteLine(zipped[2]);
+            Console.WriteLine(zipped[3]);
+            Console.WriteLine(zipped[4]);
+            Console.WriteLine(zipped[5]);
+            
             Console.ReadLine();
-
-            List<int> list = new List<int>();
-
-            list.Add(1);
-            list.Add(2);
-            list.Add(1);
-            list.RemoveAt(2);
 
 
 

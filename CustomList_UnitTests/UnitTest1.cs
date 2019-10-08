@@ -17,7 +17,9 @@ namespace CustomList_UnitTests
 
 
 
-      // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // ADD METHODE TESTS // // // // //
+     
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // ADD METHODE TESTS // // // // //
 
         [TestMethod]
         public void Add_AddToEmptyList_ItemGoesToIndexZero()    
@@ -420,6 +422,44 @@ namespace CustomList_UnitTests
 
 
 
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // ZIP METHODE TESTS // // // // //
+
+        [TestMethod]
+        public void Zip_ZipTwoEqualLengthLists_StaggersJoinedList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            
+            CustomList<int> testList2 = new CustomList<int>();
+
+            CustomList<int> testList3 = new CustomList<int>();
+
+            testList3.Add(1);
+            testList3.Add(3);
+            testList3.Add(5);
+
+            testList3.Add(2);
+            testList3.Add(4);
+            testList3.Add(6);
+
+            testList.Add(1);
+            testList.Add(3);
+            testList.Add(5);
+
+            testList2.Add(2);
+            testList2.Add(4);
+            testList2.Add(6);
+
+            CustomList<int> expected = testList3;
+            CustomList<int> actual;
+
+            // act
+            testList.Zip(testList2);
+            actual = testList.Zip(testList2);
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
 
 
 
