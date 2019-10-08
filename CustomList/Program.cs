@@ -10,6 +10,16 @@ namespace CustomList
     {
         static void Main(string[] args)
         {
+
+
+            CustomList<T> customList =  new CustomList<T>();
+            
+
+
+
+
+
+
         }
     }
 }
