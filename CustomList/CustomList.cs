@@ -11,6 +11,36 @@ namespace CustomList
 
         private T[] items;
 
+        public T this[int index]
+        {
+            get
+            {
+                // return the value specified by index
+                T temp;
+
+                if (index >= 0 && index <= capacity - 1)
+                {
+                    temp = items[index];
+                    
+                }
+                else
+                {
+                    throw new System.ArgumentException("Index out of range");
+                }
+
+                return (temp);
+            }
+            set
+            {
+                // set the value specified by index
+                if (index >= 0 && index <= capacity - 1)
+                {
+                    items[index] = value;
+                }
+            }
+        }
+
+
         private int count;
         public int Count
         {
@@ -18,26 +48,45 @@ namespace CustomList
             {
                 return count;
             }
+         
+        }
+
+        private int capacity;
+        public int Capacity
+        {
+            get
+            {
+                return capacity;
+            }
+            set
+            {
+                capacity = value;
+            }
         }
 
 
         public CustomList()
         {
             items = new T[4];
+            count = 0;
+            capacity = 4;
         }
 
-        public CustomList<T> this[T index]
+     
+        public void GrowArray()
         {
-            get
-            {
+            // make new array with double capacity
+            // capacity *= 2
+            // store new array as array (reference)
 
-            }
-            set
-            {
+            int newSize = capacity * 2;
+            T[] larger = new T[newSize];
 
-            }
+            // larger
+
+            Capacity = capacity * 2;
+            
         }
-
 
 
 
@@ -47,9 +96,21 @@ namespace CustomList
         // ADD
         public void Add(T itemToAdd)
         {
+           if (count == capacity)
+            {
+                GrowArray();
+            }
 
 
+            items[count] = itemToAdd;
 
+            incrementCount();
+
+        }
+
+        private void incrementCount()
+        {
+            count += 1;
         }
 
 

@@ -136,7 +136,7 @@ namespace CustomList_UnitTests
 
 
         [TestMethod]
-        public void Remove_RemoveIndexFromStartOfList_ItemGoesToIndexZero()
+        public void Remove_RemoveValueFromStartOfList_ItemGoesToIndexZero()
         {
             // arrange
             CustomList<int> testList = new CustomList<int>();
@@ -147,7 +147,7 @@ namespace CustomList_UnitTests
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
-            testList.Remove(0);
+            testList.Remove(1);
             actual = testList[0];
 
             // assert
@@ -166,7 +166,7 @@ namespace CustomList_UnitTests
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
-            testList.Remove(1);
+            testList.Remove(2);
             actual = testList[1];
 
             // assert
@@ -207,9 +207,9 @@ namespace CustomList_UnitTests
             testList.Add(2);
             testList.Add(3);
             testList.Add(4);
-            testList.Remove(0);
-            testList.Remove(0);
-            testList.Remove(0);
+            testList.Remove(1);
+            testList.Remove(2);
+            testList.Remove(3);
 
 
             actual = testList[0];
@@ -231,9 +231,9 @@ namespace CustomList_UnitTests
             testList.Add(2);
             testList.Add(3);
             testList.Add(4);
-            testList.Remove(0);
-            testList.Remove(0);
-            testList.Remove(0);
+            testList.Remove(1);
+            testList.Remove(2);
+            testList.Remove(3);
 
 
             actual = testList.Count;
@@ -243,9 +243,31 @@ namespace CustomList_UnitTests
         }
 
 
-        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  // // // // //
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  // // // // // GROW CAPACITY METHODE
+
+        [TestMethod]
+        public void GrowArray_ExceedStartCapacity_CapacityDoubles()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 8;
+            int actual;
+
+            // act
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.Add(5);
+          
+         
 
 
+            actual = testList.Capacity;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
 
 
 

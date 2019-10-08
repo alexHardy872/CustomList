@@ -12,10 +12,16 @@ namespace CustomList
         {
 
 
-            CustomList<T> customList =  new CustomList<T>();
-            
+            CustomList<int> customList =  new CustomList<int>();
 
+            customList.Add(1);
+            customList.Add(2);
+            customList.Add(3);
 
+            Console.WriteLine(customList[0]);
+            Console.WriteLine(customList[1]);
+            Console.WriteLine(customList[2]);
+            Console.ReadLine();
 
 
 
