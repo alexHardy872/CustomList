@@ -82,8 +82,14 @@ namespace CustomList
             int newSize = capacity * 2;
             T[] larger = new T[newSize];
 
-            // larger
+            //iterate through old array and copy to new
 
+            for ( int i = 0; i < items.Length; i++ )
+            {
+                larger[i] = items[i];
+            }
+
+            items = larger;
             Capacity = capacity * 2;
             
         }
@@ -118,6 +124,12 @@ namespace CustomList
 
         public void Remove(int indexToRemove) 
         {
+            if (count == 0)
+            {
+                throw new System.ArgumentException("List is Empty, none to remove");
+            }
+
+
 
         }
 
