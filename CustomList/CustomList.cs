@@ -21,7 +21,7 @@ namespace CustomList
                 if (index >= 0 && index <= capacity - 1)
                 {
                     temp = items[index];
-                    
+
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace CustomList
             {
                 return count;
             }
-         
+
         }
 
         private int capacity;
@@ -72,7 +72,7 @@ namespace CustomList
             capacity = 4;
         }
 
-     
+
         public void GrowArray()
         {
             // make new array with double capacity
@@ -84,14 +84,14 @@ namespace CustomList
 
             //iterate through old array and copy to new
 
-            for ( int i = 0; i < items.Length; i++ )
+            for (int i = 0; i < items.Length; i++)
             {
                 larger[i] = items[i];
             }
 
             items = larger;
             Capacity = capacity * 2;
-            
+
         }
 
 
@@ -102,7 +102,7 @@ namespace CustomList
         // ADD
         public void Add(T itemToAdd)
         {
-           if (count == capacity)
+            if (count == capacity)
             {
                 GrowArray();
             }
@@ -116,7 +116,7 @@ namespace CustomList
         }
 
 
-        public void AddAt(T itemToAdd , int index)
+        public void AddAt(T itemToAdd, int index)
         {
             if (count == capacity)
             {
@@ -126,70 +126,71 @@ namespace CustomList
             incrementCount(); // MAKE OTHER VALUES SHIFT AROUND
         }
 
-     
+
 
 
 
         // REMOVE
 
-        public bool Remove(T valueToRemove) 
+        public bool Remove(T valueToRemove)
         {
             if (count == 0)
             {
                 return false;
             }
-         
-            int counter = 0;
+            bool removed = false;
             T[] smaller = new T[capacity];
 
-            for ( int i = 0; i < count; i++)
+            for (int i = 0; i < count; i++)
             {
-
-                if ( items[i].Equals(valueToRemove) && counter == 0)
+                if (removed == false)
                 {
-                    counter += 1;
-                    
-                    continue;
-                }
-
-                if (i == count - 1 && counter == 0)
-                {
-                    if (counter == 0)
+                    if (items[i].Equals(valueToRemove))
                     {
-                        return false; // NOT IN THIS LIST
+                        if (i == count - 1)
+                        {
+                            items = smaller;
+                            DecrementCount();
+                            return true;
+                        }
+                        removed = true;
+                        continue;
                     }
                     else
                     {
-
-                        items = smaller;
-                        DecrementCount();
-                        return true;
+                        smaller[i] = items[i];
+                        if (i == count - 1)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
-
                 }
-
-                if (counter == 1)
+                else  // IF REMOVED IS TRUE
                 {
-                    smaller[i-1] = items[i];
-                    if ( i == count - 1)
+                    smaller[i - 1] = items[i];
+                    if (i == count - 1)
                     {
                         items = smaller;
                         DecrementCount();
                         return true;
                     }
-                }
-                else
-                {
-                    smaller[i] = items[i];
-                }
-               
 
+                }
             }
 
-            
             return false;
+        } 
+            
+
+      
+
           
-        }
+        
+
 
        
 
@@ -200,61 +201,51 @@ namespace CustomList
             {
                 return false;
             }
-
-            int counter = 0;
+            bool removed = false;
             T[] smaller = new T[capacity];
 
             for (int i = 0; i < count; i++)
             {
-
-                if (i == index && counter == 0)
+                if (removed == false)
                 {
-                    counter += 1;
-
-                    continue;
-                }
-
-                if (i == count - 1 && counter == 0)
-                {
-                    if (counter == 0)
+                    if (i == index)
                     {
-                        return false; // NOT IN THIS LIST
+                        if (i == count - 1)
+                        {
+                            items = smaller;
+                            DecrementCount();
+                            return true;
+                        }
+                        removed = true;
+                        continue;
                     }
                     else
                     {
-
-                        items = smaller;
-                        DecrementCount();
-                        return true;
+                        smaller[i] = items[i];
+                        if (i == count - 1)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            continue;
+                        }
                     }
-
                 }
-
-                if (counter == 1 && i != 1)
-                {
-                
-                
-                    smaller[i - 1] = items[i];
+                else  // IF REMOVED IS TRUE
+                {                  
+                    smaller[i - 1] = items[i];               
                     if (i == count - 1)
                     {
                         items = smaller;
                         DecrementCount();
                         return true;
                     }
-                }
-                else
-                {
-                    smaller[i] = items[i];
-                }
 
-
+                }
             }
 
-
             return false;
-
-
-
         }
 
         private void DecrementCount()

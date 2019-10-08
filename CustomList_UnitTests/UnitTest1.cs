@@ -155,6 +155,44 @@ namespace CustomList_UnitTests
         }
 
         [TestMethod]
+        public void Remove_RemoveValueFromEndOfList_BringsDownCOunt()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 2;
+            int actual;
+
+            // act
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Remove(3);
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_RemoveValueFromListCount2_ItemGoesToIndexZero()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 2;
+            int actual;
+
+            // act
+            testList.Add(1);
+            testList.Add(2);
+            
+            testList.Remove(1);
+            actual = testList[0];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void Remove_RemoveIndexFromMiddleOfList_LastIndexGoesDown()
         {
             // arrange
@@ -258,7 +296,7 @@ namespace CustomList_UnitTests
             testList.Add(1);
             testList.Add(2);
             testList.Add(3);
-            testList.RemoveAt(1);
+            testList.RemoveAt(0);
             actual = testList[0];
 
             // assert

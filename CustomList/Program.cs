@@ -17,23 +17,12 @@ namespace CustomList
             customList.Add(1);
             customList.Add(2);
             customList.Add(3);
-            customList.Add(1);
-            customList.Add(2);
-            customList.Add(3);
-            customList.Add(1);
-            customList.Add(2);
-            customList.Add(3);
-            customList.Remove(2);
+            customList.RemoveAt(0);
 
             Console.WriteLine(customList[0]);
             Console.WriteLine(customList[1]);
             Console.WriteLine(customList[2]);
-            Console.WriteLine(customList[3]);
-            Console.WriteLine(customList[4]);
-            Console.WriteLine(customList[5]);
-            Console.WriteLine(customList[6]);
-            Console.WriteLine(customList[7]);
-            Console.WriteLine(customList[8]);
+        
             Console.ReadLine();
 
             List<int> list = new List<int>();
@@ -41,7 +30,7 @@ namespace CustomList
             list.Add(1);
             list.Add(2);
             list.Add(1);
-            list.Remove(1);
+            list.RemoveAt(2);
 
 
 
