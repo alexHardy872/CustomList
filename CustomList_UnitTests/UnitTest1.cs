@@ -243,6 +243,117 @@ namespace CustomList_UnitTests
         }
 
 
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // RemoveAt METHODE TESTS // // // // //
+
+
+        [TestMethod]
+        public void RemoveAt_RemoveFirstIndex_OneIndexBeomesZeroIndex()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 2;
+            int actual;
+
+            // act
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.RemoveAt(1);
+            actual = testList[0];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void RemoveAt_RemoveIndexFromMiddleOfList_LastIndexGoesDown()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 3;
+            int actual;
+
+            // act
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.RemoveAt(1);
+            actual = testList[1];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestMethod]
+        public void RemoveAt_RemoveIndexFromList_CountDecrements()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 2;
+            int actual;
+
+            // act
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.RemoveAt(0);
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void RemoveAt_RemoveMultipleItemsfromList_CheckFirstIndex()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 4;
+            int actual;
+
+            // act
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.RemoveAt(0);
+            testList.RemoveAt(0);
+            testList.RemoveAt(0);
+
+
+            actual = testList[0];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void RemoveAt_RemoveMultipleItemsfromList_CheckCount()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 1;
+            int actual;
+
+            // act
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.RemoveAt(0);
+            testList.RemoveAt(0);
+            testList.RemoveAt(0);
+
+
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
         // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  // // // // // GROW CAPACITY METHODE
 
         [TestMethod]

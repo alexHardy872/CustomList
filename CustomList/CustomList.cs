@@ -106,12 +106,8 @@ namespace CustomList
             {
                 GrowArray();
             }
-
-
             items[count] = itemToAdd;
-
             incrementCount();
-
         }
 
         private void incrementCount()
@@ -120,17 +116,150 @@ namespace CustomList
         }
 
 
+        public void AddAt(T itemToAdd , int index)
+        {
+            if (count == capacity)
+            {
+                GrowArray();
+            }
+            items[index] = itemToAdd;
+            incrementCount(); // MAKE OTHER VALUES SHIFT AROUND
+        }
+
+     
+
+
+
         // REMOVE
 
-        public void Remove(int indexToRemove) 
+        public bool Remove(T valueToRemove) 
         {
             if (count == 0)
             {
-                throw new System.ArgumentException("List is Empty, none to remove");
+                return false;
+            }
+         
+            int counter = 0;
+            T[] smaller = new T[capacity];
+
+            for ( int i = 0; i < count; i++)
+            {
+
+                if ( items[i].Equals(valueToRemove) && counter == 0)
+                {
+                    counter += 1;
+                    
+                    continue;
+                }
+
+                if (i == count - 1 && counter == 0)
+                {
+                    if (counter == 0)
+                    {
+                        return false; // NOT IN THIS LIST
+                    }
+                    else
+                    {
+
+                        items = smaller;
+                        DecrementCount();
+                        return true;
+                    }
+
+                }
+
+                if (counter == 1)
+                {
+                    smaller[i-1] = items[i];
+                    if ( i == count - 1)
+                    {
+                        items = smaller;
+                        DecrementCount();
+                        return true;
+                    }
+                }
+                else
+                {
+                    smaller[i] = items[i];
+                }
+               
+
+            }
+
+            
+            return false;
+          
+        }
+
+       
+
+
+        public bool RemoveAt(int index)
+        {
+            if (count == 0)
+            {
+                return false;
+            }
+
+            int counter = 0;
+            T[] smaller = new T[capacity];
+
+            for (int i = 0; i < count; i++)
+            {
+
+                if (i == index && counter == 0)
+                {
+                    counter += 1;
+
+                    continue;
+                }
+
+                if (i == count - 1 && counter == 0)
+                {
+                    if (counter == 0)
+                    {
+                        return false; // NOT IN THIS LIST
+                    }
+                    else
+                    {
+
+                        items = smaller;
+                        DecrementCount();
+                        return true;
+                    }
+
+                }
+
+                if (counter == 1 && i != 1)
+                {
+                
+                
+                    smaller[i - 1] = items[i];
+                    if (i == count - 1)
+                    {
+                        items = smaller;
+                        DecrementCount();
+                        return true;
+                    }
+                }
+                else
+                {
+                    smaller[i] = items[i];
+                }
+
+
             }
 
 
+            return false;
 
+
+
+        }
+
+        private void DecrementCount()
+        {
+            count -= 1;
         }
 
         // ZIP
