@@ -323,21 +323,31 @@ namespace CustomList
             }
         }
 
-        /*
-        public override CustomList<string> ToString() 
+        
+        public override string ToString() 
         {
-            CustomList<string> stringList = new CustomList<string>();
-            int count = 0;
+            string result = "[";
+            int counter = 0;
 
-            foreach(T item in items )
+            for ( int i = 0; i < count; i++)
             {
-                stringList[count] = IntToString()
-                count++;
-            }
+                if (i == count - 1)
+                {
+                    result += items[i] + "]";
+                    break;
+                }
+                else
+                {
+                    result += items[i].ToString() + ", ";
+                               
+                }
 
-            return stringList;
+            }
+           
+
+            return result;
         }
-        */
+        
 
 
 

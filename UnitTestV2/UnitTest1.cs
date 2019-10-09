@@ -612,7 +612,41 @@ namespace UnitTestV2
         // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // TO STRING  // // // // //
 
 
+        [TestMethod]
 
+        public void StringInOverRide_GetStringReturnOnInt_ReturnsStringOfInts()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();         
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+
+            // act
+            string expected = "[1, 2, 3]";
+            string actual = testList.ToString();
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+
+        public void StringInOverRide_GetStringReturnOnString_ReturnsStringsInline()
+        {
+            // arrange
+            CustomList<string> testList = new CustomList<string>();
+
+            testList.Add("one");
+            testList.Add("two");
+            testList.Add("three");
+
+            // act
+            string expected = "[one, two, three]";
+            string actual = testList.ToString();
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
 
 
         // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // OPERATOR OVERLOAD // // // // //
