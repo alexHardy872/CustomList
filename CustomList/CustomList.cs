@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,8 +7,33 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T>
+    public class CustomList<T> : IEnumerable<T>
     {
+
+
+        public IEnumerator<T> GetEnumerator()
+        {    
+            
+            for ( int i = 0; i < count; i++)
+            
+            {
+                if (items[i] == null)
+                {
+                    break;
+                }
+                
+                    yield return items[i];              
+            }       
+        }
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
+        {
+            // Lets call the generic version here
+            return this.GetEnumerator();
+        }
+
+
+
+
 
         private T[] items;
 
@@ -18,7 +44,7 @@ namespace CustomList
                 // return the value specified by index
                 T temp;
 
-                if (index >= 0 && index <= capacity - 1)
+                if (index >= 0 && index <= count - 1)
                 {
                     temp = items[index];
 
@@ -95,11 +121,9 @@ namespace CustomList
         }
 
 
+        //   //    //   //   //   //   //  //  //  //  //  //  // ADD METHODES
 
 
-
-
-        // ADD
         public void Add(T itemToAdd)
         {
             if (count == capacity)
@@ -116,21 +140,55 @@ namespace CustomList
         }
 
 
-        public void AddAt(T itemToAdd, int index)
+        public bool AddAt(T itemToAdd, int index)
         {
+            if (count == 0 || index == count)
+            {
+                Add(itemToAdd);
+                return true;
+            }
+            if (index > count || index <0) // check that index is within count
+            {
+                return false;
+            }
             if (count == capacity)
             {
                 GrowArray();
             }
-            items[index] = itemToAdd;
-            incrementCount(); // MAKE OTHER VALUES SHIFT AROUND
+            bool added = false;
+            T[] larger = new T[capacity];
+
+            for ( int i = 0; i < count; i++)
+            {
+                if (added == false)
+                {
+                    if ( i == index)
+                    {
+                        larger[i] = itemToAdd;
+                        incrementCount();
+                        added = true;
+                    }
+                    else
+                    {
+                        larger[i] = items[i];
+
+                    }
+                }
+                else // added = true
+                {
+                    larger[i] = items[i - 1];
+                }
+            }
+
+            items = larger;
+            return true;
+
         }
 
 
+        //  //   //    //    //    ///    //   //  //  //  //  //  REMOVE METHODES
 
 
-
-        // REMOVE
 
         public bool Remove(T valueToRemove)
         {
@@ -187,14 +245,6 @@ namespace CustomList
             
 
       
-
-          
-        
-
-
-       
-
-
         public bool RemoveAt(int index)
         {
             if (count == 0)
@@ -253,6 +303,8 @@ namespace CustomList
             count -= 1;
         }
 
+
+
         // ZIP
         public CustomList<T> Zip( CustomList<T> newList) // SOME KIND OF TYPE RESTRICTION??
         {
@@ -278,11 +330,40 @@ namespace CustomList
             }
         }
 
+        /*
+        public override CustomList<string> ToString() 
+        {
+            CustomList<string> stringList = new CustomList<string>();
+            int count = 0;
+
+            foreach(T item in items )
+            {
+                stringList[count] = IntToString()
+                count++;
+            }
+
+            return stringList;
+        }
+        */
+
+        //////// // // // // // // // // // // //  // // // // // // / // // OVERLOADS
 
 
+        public static CustomList<T> operator + (CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            CustomList<T> sum = new CustomList<T>();
 
+            foreach (T item in listOne)
+            {
+                sum.Add(item);
+            }
 
-
+            foreach (T item in listTwo)
+            {
+                sum.Add(item);
+            }
+            return sum;
+        }
 
 
 

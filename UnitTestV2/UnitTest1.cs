@@ -126,10 +126,97 @@ namespace UnitTestV2
             }
 
 
-            // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // REMOVE METHODE TESTS // // // // //
 
 
-            [TestMethod]
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // AddAt METHODE TESTS // // // // //
+
+        [TestMethod]
+        public void AddAt_AddToStartList_IndexZeroIsAdded()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 1;
+            int actual;
+
+            // act
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.AddAt(1, 0);
+
+            actual = testList[0];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AddAt_AddToEndOfList_LastIndexIsAdded()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 1;
+            int actual;
+
+            // act
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.AddAt(1, 3);
+
+            actual = testList[3];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AddAt_AddToMiddleOfList_LastIndexIsAdded()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 3;
+            int actual;
+
+            // act
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.AddAt(1, 1);
+
+            actual = testList[2];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void AddAt_AddToMiddleOfList_CountIncreases()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            int expected = 4;
+            int actual;
+
+            // act
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.AddAt(1, 1);
+
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // REMOVE METHODE TESTS // // // // //
+
+
+        [TestMethod]
             public void Remove_RemoveValueFromStartOfList_ItemGoesToIndexZero()
             {
                 // arrange
@@ -522,15 +609,116 @@ namespace UnitTestV2
             }
 
 
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // TO STRING  // // // // //
+
+            [TestMethod]
+
+            public void PlusOperatorOverLoad_DoesCombine2Lists_ReturnsCombinedList()
+        {
+
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> testList3 = new CustomList<int>();
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+
+            testList2.Add(4);
+            testList2.Add(5);
+            testList2.Add(6);
+
+            testList3.Add(1);
+            testList3.Add(2);
+            testList3.Add(3);
+            testList3.Add(4);
+            testList3.Add(5);
+            testList3.Add(6);
+
+            // act
+            int expected = 6;
+            int  actual = (testList + testList2)[5];
+            // assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+
+        [TestMethod]
+
+        public void PlusOperatorOverLoad_DoesCombine2ListsCount_ReturnsCombinedCount()
+        {
+
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> testList3 = new CustomList<int>();
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+
+            testList2.Add(4);
+            testList2.Add(5);
+            testList2.Add(6);
+
+            testList3.Add(1);
+            testList3.Add(2);
+            testList3.Add(3);
+            testList3.Add(4);
+            testList3.Add(5);
+            testList3.Add(6);
+
+            // act
+            int expected = 6;
+            int actual = (testList + testList2).Count;
+            // assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // OPERATOR OVERLOAD // // // // //
+
+
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // INNUMERATORE  // // // // //
+
+
+        [TestMethod]
+        public void IEnumerable_DoesForEachWork_ReturnsSum()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+
+            int sum = 0;
+            int expected = 6;
+            int actual;
+
+            // act
+            foreach(int item in testList )
+            {
+                sum += item;
+            }
+
+            actual = sum;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
 
 
 
 
 
 
-
-
-   
-
-}
+    }
 }

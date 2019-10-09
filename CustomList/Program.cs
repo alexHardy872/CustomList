@@ -41,7 +41,12 @@ namespace CustomList
             Console.WriteLine(zipped[3]);
          
             
+            foreach(int item in zipped)
+            {
+                Console.WriteLine(item);
+            }
             Console.ReadLine();
+
 
 
 
