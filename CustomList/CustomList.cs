@@ -101,14 +101,8 @@ namespace CustomList
 
         public void GrowArray()
         {
-            // make new array with double capacity
-            // capacity *= 2
-            // store new array as array (reference)
-
             int newSize = capacity * 2;
             T[] larger = new T[newSize];
-
-            //iterate through old array and copy to new
 
             for (int i = 0; i < items.Length; i++)
             {
@@ -117,7 +111,6 @@ namespace CustomList
 
             items = larger;
             Capacity = capacity * 2;
-
         }
 
 
@@ -346,6 +339,34 @@ namespace CustomList
         }
         */
 
+
+
+        public bool Contains(T check)
+        {
+            foreach(T item in items)
+            {
+                if (item.Equals(check))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public int IndexOf(T check) // returns first index of check
+        {
+          for(int i = 0; i < count; i++)
+            {
+                if (items[i].Equals(check))
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+
         //////// // // // // // // // // // // //  // // // // // // / // // OVERLOADS
 
 
@@ -363,6 +384,41 @@ namespace CustomList
                 sum.Add(item);
             }
             return sum;
+        }
+
+
+        public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
+        {
+            CustomList<T> sum = new CustomList<T>();
+            CustomList<T> one = new CustomList<T>();
+            CustomList<T> two = new CustomList<T>();
+            one = listOne;
+            two = listTwo;
+
+
+            foreach (T item in listOne)
+            {
+
+                if ((two.Contains(item)) == true)
+                {
+
+                    two.Remove(item);
+                }
+                else
+                {
+                    sum.Add(item);
+                }
+
+            }
+
+
+            return sum;
+
+            // iterate through list two
+            // if value is in list one, remove that value
+            // Contains
+            //
+        
         }
 
 

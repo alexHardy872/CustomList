@@ -611,7 +611,13 @@ namespace UnitTestV2
 
         // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // TO STRING  // // // // //
 
-            [TestMethod]
+
+
+
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // OPERATOR OVERLOAD // // // // //
+
+        [TestMethod]
 
             public void PlusOperatorOverLoad_DoesCombine2Lists_ReturnsCombinedList()
         {
@@ -680,8 +686,89 @@ namespace UnitTestV2
 
         }
 
+        [TestMethod]
 
-        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // OPERATOR OVERLOAD // // // // //
+        public void MinusOperatorOverLoad_DoesSubtract_ReturnsShortenedList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> testList3 = new CustomList<int>();
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(6);
+
+            testList2.Add(4);
+            testList2.Add(5);
+           
+            // act
+            int expected = 6;
+            int actual = (testList - testList2)[3];
+            // assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
+        [TestMethod]
+
+        public void MinusOperatorOverLoad_DoesSubtract_ReturnsShortenedCount()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> testList3 = new CustomList<int>();
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(4);
+            testList.Add(4);
+            testList.Add(4);
+            testList.Add(6);
+
+            testList2.Add(4);
+            testList2.Add(4);
+
+            // act
+            int expected = 4;
+            int actual = (testList - testList2).Count;
+            // assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+        [TestMethod]
+
+        public void MinusOperatorOverLoad_SubstractALl_ReturnsCountZero()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> testList3 = new CustomList<int>();
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(4);
+            testList.Add(4);
+            testList.Add(4);
+            testList.Add(6);
+
+            testList2.Add(4);
+            testList2.Add(4);
+
+            // act
+            int expected = 0;
+            int actual = (testList2 - testList).Count;
+            // assert
+            Assert.AreEqual(expected, actual);
+
+        }
+
+
 
 
 
@@ -717,8 +804,113 @@ namespace UnitTestV2
 
 
 
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // HELPERS  // // // // //
+
+        // CONTAINS
 
 
+        [TestMethod]
+
+        public void Contains_DoesReturnTrueIfYes_ReturnsTrue()
+        {
+
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+           
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(6);
+
+            // act
+            bool expected = true;
+            bool actual = testList.Contains(4);
+            // assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+        [TestMethod]
+
+        public void Contains_DoesReturnFalseIfNo_ReturnsFalse()
+        {
+
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(6);
+
+            // act
+            bool expected = false;
+            bool actual = testList.Contains(7);
+            // assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+        // INDEX OF
+
+
+        [TestMethod]
+
+        public void IndexOf_ReturnProperIndex_ReturnsFirstIndex()
+        {
+
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(4);
+
+            // act
+            int expected = 3;
+            int actual = testList.IndexOf(4);
+            // assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
+
+        [TestMethod]
+
+        public void IndexOf_NotFound_ReturnNegOne()
+        {
+
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(6);
+
+            // act
+            int expected = -1;
+            int actual = testList.IndexOf(7);
+            // assert
+            Assert.AreEqual(expected, actual);
+
+
+        }
 
     }
 }
