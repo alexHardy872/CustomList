@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29324.140
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomList", "CustomList\CustomList.csproj", "{B0B15772-80BE-4BA3-BAB0-75417C3FBEE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomList_UnitTests", "CustomList_UnitTests\CustomList_UnitTests.csproj", "{155202CC-9007-42D1-9620-172ED1DD96E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomList_UnitTests", "CustomList_UnitTests\CustomList_UnitTests.csproj", "{155202CC-9007-42D1-9620-172ED1DD96E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestV2", "UnitTestV2\UnitTestV2.csproj", "{373E6830-5351-4D30-86E6-0D95AD3397F7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{155202CC-9007-42D1-9620-172ED1DD96E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{155202CC-9007-42D1-9620-172ED1DD96E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{155202CC-9007-42D1-9620-172ED1DD96E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{373E6830-5351-4D30-86E6-0D95AD3397F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{373E6830-5351-4D30-86E6-0D95AD3397F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{373E6830-5351-4D30-86E6-0D95AD3397F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{373E6830-5351-4D30-86E6-0D95AD3397F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

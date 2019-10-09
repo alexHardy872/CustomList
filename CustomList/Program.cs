@@ -28,7 +28,7 @@ namespace CustomList
 
             testList.Add(1);
             testList.Add(3);
-            testList.Add(5);
+            //testList.Add(5);
 
             testList2.Add(2);
             testList2.Add(4);
@@ -39,8 +39,7 @@ namespace CustomList
             Console.WriteLine(zipped[1]);
             Console.WriteLine(zipped[2]);
             Console.WriteLine(zipped[3]);
-            Console.WriteLine(zipped[4]);
-            Console.WriteLine(zipped[5]);
+         
             
             Console.ReadLine();
 

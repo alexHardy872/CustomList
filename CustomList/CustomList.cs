@@ -254,29 +254,29 @@ namespace CustomList
         }
 
         // ZIP
-        public CustomList<T> Zip( CustomList<T> newList) // restrictor that lists are same T
+        public CustomList<T> Zip( CustomList<T> newList) // SOME KIND OF TYPE RESTRICTION??
         {
-            // iterate through COUNT of ListOne + COUNT of ListTwo put together. // do zip lists have to be equal??
-            // add listOne[0]
-            // add listTwo[0]
-            // add listOne [1]
-            // add listTwo [1]
-            
             CustomList<T> zipped = new CustomList<T>();
-            for ( int i = 0; i < count; i ++ )
+            int zipCount = GetShortestCountOfTwoLists(newList);
+            for ( int i = 0; i < zipCount; i ++ )
             {
-
                 zipped.Add(items[i]);
                 zipped.Add(newList[i]);
-                
-
-
             }
             return zipped;
-
-
         }
 
+        private int GetShortestCountOfTwoLists(CustomList<T> list2)
+        {
+            if (count > list2.Count)
+            {
+                return list2.Count;
+            }
+            else
+            {
+                return count;
+            }
+        }
 
 
 

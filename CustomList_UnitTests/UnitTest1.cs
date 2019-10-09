@@ -425,41 +425,116 @@ namespace CustomList_UnitTests
         // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // ZIP METHODE TESTS // // // // //
 
         [TestMethod]
-        public void Zip_ZipTwoEqualLengthLists_StaggersJoinedList()
+        public void Zip_ZipTwoEqualLengthLists_FirstIndexEqual()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();         
+            CustomList<int> testList2 = new CustomList<int>();
+            testList.Add(1);
+            testList.Add(3);
+            testList.Add(5);
+            testList2.Add(2);
+            testList2.Add(4);
+            testList2.Add(6);
+            int expected = 1;
+            int actual;
+
+            // act
+            CustomList<int> zipped = testList.Zip(testList2);
+
+            actual = zipped[0];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Zip_ZipTwoEqualLengthLists_LastIndexExpected()
         {
             // arrange
             CustomList<int> testList = new CustomList<int>();
-            
             CustomList<int> testList2 = new CustomList<int>();
+            testList.Add(1);
+            testList.Add(3);
+            testList.Add(5);
+            testList2.Add(2);
+            testList2.Add(4);
+            testList2.Add(6);
+            int expected = 6;
+            int actual;
 
-            CustomList<int> testList3 = new CustomList<int>();
+            // act
+            CustomList<int> zipped = testList.Zip(testList2);
 
-            testList3.Add(1);
-            testList3.Add(3);
-            testList3.Add(5);
+            actual = zipped[5];
 
-            testList3.Add(2);
-            testList3.Add(4);
-            testList3.Add(6);
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
 
+        [TestMethod]
+        public void Zip_ZipTwoLists_CountBecomesDoubleShorterOfTwo()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+         
             testList.Add(1);
             testList.Add(3);
             testList.Add(5);
 
             testList2.Add(2);
             testList2.Add(4);
-            testList2.Add(6);
+          
 
-            CustomList<int> expected = testList3;
-            CustomList<int> actual;
+            int expected = 4;
+            int actual;
 
             // act
-            testList.Zip(testList2);
-            actual = testList.Zip(testList2);
+            //testList.Zip(testList2);
+
+            CustomList<int> zipped = testList.Zip(testList2);
+
+            actual = zipped.Count;
 
             // assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Zip_ZipTwoListsFirstLower_CountBecomesShorterOfTwo()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+
+            testList.Add(1);
+           
+            
+
+            testList2.Add(2);
+            testList2.Add(4);
+            testList2.Add(6);
+
+
+            int expected = 2;
+            int actual;
+
+            // act
+            CustomList<int> zipped = testList.Zip(testList2);
+
+            actual = zipped.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+
+
+
 
 
 
