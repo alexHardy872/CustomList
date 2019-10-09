@@ -608,6 +608,27 @@ namespace UnitTestV2
                 Assert.AreEqual(expected, actual);
             }
 
+        [TestMethod]
+        public void Zip_Zip2InitializedLists_ReturnZippedList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 0, 0, 0, 0, 0 };
+            CustomList<int> testList2 = new CustomList<int>() { 1, 1, 1, 1, 1 };
+ 
+            CustomList<int> expected = new CustomList<int> { 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
+
+            // act
+            CustomList<int> actual = testList.Zip(testList2);
+
+    
+            // assert
+            for ( int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+           
+        }
+
 
         // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // TO STRING  // // // // //
 
@@ -685,6 +706,45 @@ namespace UnitTestV2
 
         }
 
+
+        [TestMethod]
+
+        public void PlusOperatorOverLoad_DoesCombineMultiple_ReturnsCombinedList()
+        {
+
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> testList3 = new CustomList<int>();
+            CustomList<int> expected = new CustomList<int>();
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+
+            testList2.Add(4);
+            testList3.Add(5);
+            testList3.Add(6);
+
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(3);
+            expected.Add(4);
+            expected.Add(5);
+            expected.Add(6);
+
+            // act
+           
+            CustomList<int> actual = (testList + testList2 + testList3);
+            // assert
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+
+            }
+           
+
+        }
 
         [TestMethod]
 
@@ -799,6 +859,48 @@ namespace UnitTestV2
             int actual = (testList2 - testList).Count;
             // assert
             Assert.AreEqual(expected, actual);
+
+        }
+
+
+        [TestMethod]
+
+        public void MinusOperatorOverLoad_DoesSubstractMultiple_ReturnsCombinedList()
+        {
+
+            // arrange
+            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList2 = new CustomList<int>();
+            CustomList<int> testList3 = new CustomList<int>();
+            CustomList<int> expected = new CustomList<int>();
+
+            testList.Add(1);
+            testList.Add(2);
+            testList.Add(3);
+            testList.Add(4);
+            testList.Add(5);
+            testList.Add(6);
+
+            testList2.Add(4);
+
+            testList3.Add(5);
+            testList3.Add(6);
+
+            expected.Add(1);
+            expected.Add(2);
+            expected.Add(3);
+       
+
+            // act
+
+            CustomList<int> actual = (testList - testList2 - testList3);
+            // assert
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+
+            }
+
 
         }
 

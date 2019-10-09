@@ -327,8 +327,6 @@ namespace CustomList
         public override string ToString() 
         {
             string result = "[";
-            int counter = 0;
-
             for ( int i = 0; i < count; i++)
             {
                 if (i == count - 1)
@@ -338,13 +336,9 @@ namespace CustomList
                 }
                 else
                 {
-                    result += items[i].ToString() + ", ";
-                               
+                    result += items[i].ToString() + ", ";                   
                 }
-
-            }
-           
-
+            }      
             return result;
         }
         
@@ -377,7 +371,7 @@ namespace CustomList
         }
 
 
-        //////// // // // // // // // // // // //  // // // // // // / // // OVERLOADS
+        //////// // // // // // // // // // // //  // // // // // // / // // OPERATOR OVERLOADS
 
 
         public static CustomList<T> operator + (CustomList<T> listOne, CustomList<T> listTwo)
@@ -424,10 +418,7 @@ namespace CustomList
 
             return sum;
 
-            // iterate through list two
-            // if value is in list one, remove that value
-            // Contains
-            //
+ 
         
         }
 

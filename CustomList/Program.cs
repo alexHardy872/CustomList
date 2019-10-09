@@ -12,7 +12,7 @@ namespace CustomList
         {
 
 
-            CustomList<int> testList = new CustomList<int>();
+            CustomList<int> testList = new CustomList<int>() { 1, 2, 4 };
 
             CustomList<int> testList2 = new CustomList<int>();
 
