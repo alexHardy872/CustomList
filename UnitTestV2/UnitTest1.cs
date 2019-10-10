@@ -396,11 +396,33 @@ namespace UnitTestV2
                 Assert.AreEqual(expected, actual);
             }
 
+        [TestMethod]
+        public void Remove_RemoveMultipleItemsfromListDownTo1_CheckCount()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 3, 3, 3, 3, 3 };
+            int expected = 1;
+            int actual;
 
-            // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // RemoveAt METHODE TESTS // // // // //
+            // act
+            testList.Remove(3);
+            testList.Remove(3);
+            testList.Remove(3);
+            testList.Remove(3);
 
 
-            [TestMethod]
+
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // RemoveAt METHODE TESTS // // // // //
+
+
+        [TestMethod]
             public void RemoveAt_RemoveFirstIndex_OneIndexBeomesZeroIndex()
             {
                 // arrange
@@ -506,11 +528,33 @@ namespace UnitTestV2
                 // assert
                 Assert.AreEqual(expected, actual);
             }
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // RemoveAll METHODE TESTS // // // // //
 
 
-            // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  // // // // // GROW CAPACITY METHODE
+        [TestMethod]
+        public void RemoveAll_RemoveAllOCcurances_noMoreFours()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 4, 4, 0, 0, 4, 4, 0, 0 };
+            CustomList<int> expected = new CustomList<int>() { 0, 0, 0, 0 };
 
-            [TestMethod]
+
+            // act
+            testList.RemoveAll(4);
+            CustomList<int> actual = testList;
+            
+
+            // assert
+            for ( int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+            
+        }
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // //  // // // // // GROW CAPACITY METHODE
+
+        [TestMethod]
             public void GrowArray_ExceedStartCapacity_CapacityDoubles()
             {
                 // arrange

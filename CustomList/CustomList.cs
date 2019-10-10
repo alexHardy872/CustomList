@@ -38,13 +38,14 @@ namespace CustomList
         private T[] items;
 
         public T this[int index]
+
         {
             get
             {
                 // return the value specified by index
                 T temp;
 
-                if (index >= 0 && index <= count - 1)
+                if (index >= 0 && index < count)
                 {
                     temp = items[index];
 
@@ -59,7 +60,7 @@ namespace CustomList
             set
             {
                 // set the value specified by index
-                if (index >= 0 && index <= capacity - 1)
+                if (index >= 0 && index < capacity)
                 {
                     items[index] = value;
                 }
@@ -245,8 +246,13 @@ namespace CustomList
                 if ( items[i].Equals(valueToRemove))
                 {                                           ///////////// BUG
                     DecrementCount();
-                    for ( int j = i; j < count; j++)
+                 
+                    for ( int j = i; j < count+1; j++)
                     {
+                        if (j == count)
+                        {
+                            break;
+                        }
                         items[j] = items[j+1];
                     }
                     return true;
@@ -334,6 +340,16 @@ namespace CustomList
             return false;
         }
 
+        public void RemoveAll(T valueToRemove)
+        {
+            bool removed;
+            do
+            {
+                removed = Remove(valueToRemove);
+            }
+            while (removed == true);
+        }
+
 
         private void DecrementCount()
         {
@@ -391,13 +407,15 @@ namespace CustomList
 
         public bool Contains(T check)
         {
-            foreach(T item in items)
+            for ( int i = 0; i < count; i++)
             {
-                if (item.Equals(check))
+                if (items[i].Equals(check))
                 {
                     return true;
                 }
+
             }
+         
             return false;
         }
 
