@@ -183,61 +183,7 @@ namespace CustomList
         //  //   //    //    //    ///    //   //  //  //  //  //  REMOVE METHODES
 
 
-/*
-        public bool Remove(T valueToRemove)
-        {
-            if (count == 0)
-            {
-                return false;
-            }
-            bool removed = false;
-            T[] smaller = new T[capacity];
 
-            for (int i = 0; i < count; i++)
-            {
-                if (removed == false)
-                {
-                    if (items[i].Equals(valueToRemove))
-                    {
-                        if (i == count - 1)
-                        {
-                            items = smaller;
-                            DecrementCount();
-                            return true;
-                        }
-                        removed = true;
-                        continue;
-                    }
-                    else
-                    {
-                        smaller[i] = items[i];
-                        if (i == count - 1)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                }
-                else  // IF REMOVED IS TRUE
-                {
-                    smaller[i - 1] = items[i];
-                    if (i == count - 1)
-                    {
-                        items = smaller;
-                        DecrementCount();
-                        return true;
-                    }
-
-                }
-            }
-
-            return false;
-        } 
-            
-    */
 
         public bool Remove(T valueToRemove)
         {
@@ -265,59 +211,7 @@ namespace CustomList
             return false;
         }
       
-        /*
-        public bool RemoveAt(int index)
-        {
-            if (count == 0)
-            {
-                return false;
-            }
-            bool removed = false;
-            T[] smaller = new T[capacity];
-
-            for (int i = 0; i < count; i++)
-            {
-                if (removed == false)
-                {
-                    if (i == index)
-                    {
-                        if (i == count - 1)
-                        {
-                            items = smaller;
-                            DecrementCount();
-                            return true;
-                        }
-                        removed = true;
-                        continue;
-                    }
-                    else
-                    {
-                        smaller[i] = items[i];
-                        if (i == count - 1)
-                        {
-                            return false;
-                        }
-                        else
-                        {
-                            continue;
-                        }
-                    }
-                }
-                else  // IF REMOVED IS TRUE
-                {                  
-                    smaller[i - 1] = items[i];               
-                    if (i == count - 1)
-                    {
-                        items = smaller;
-                        DecrementCount();
-                        return true;
-                    }
-
-                }
-            }
-
-            return false;
-        } */
+       
 
         public bool RemoveAt(int index)
         {
@@ -326,8 +220,12 @@ namespace CustomList
                 if (i == index)
                 {
                     DecrementCount();
-                    for (int j = i; j < count; j++)
+                    for (int j = i; j < count+1; j++)
                     {
+                        if (j == count)
+                        {
+                            break;
+                        }
                         items[j] = items[j + 1];
                     }
                     return true;
@@ -391,7 +289,7 @@ namespace CustomList
             {
                 if (i == count - 1)
                 {
-                    result += items[i] + "]";
+                    result += items[i].ToString() + "]";
                     break;
                 }
                 else
@@ -483,7 +381,117 @@ namespace CustomList
         
         }
 
+        /*
+        public void Sort()  where T : CustomList<int>
+        {
+           
+            
+            for (int i = 0; i < count; i++)
+            {
+                if (Compare(i, i+1) == true)
+                {
+                    Swap(i, i + 1);
+                }
 
+
+
+            } */
+
+            // Loop through array
+                
+            // for each item, loop through items UNTIL it finds an item lower, else put at end 
+                // check item and item+1, if item higher switch their index
+
+            // loop through again, if nothing switched stop
+
+           
+       // }
+
+        public CustomList<int> SortLargestFirst(CustomList<int> Items, int mobileCount, int start)
+        {
+            int largest;
+
+            for (int i = start; i < mobileCount; i++)
+            {
+                
+                if (i == mobileCount -1 )
+                {
+                    break;
+                }
+
+                if (Compare2(i, i + 1, Items) == true)
+                {
+                    largest = Items[i];
+                    Items.RemoveAt(i);
+                    Items.AddAt(largest, mobileCount-1);
+                }
+
+
+
+            }
+            return Items;
+        }
+
+        public CustomList<int> SortSmallest(CustomList<int> Items, int mobileCount, int start)
+        {
+           
+
+            if (mobileCount == start)
+            {
+                return Items;
+            }
+
+            for (int i = mobileCount-1; i > start; i--)
+            {
+
+                if (i == start+1)
+                {
+
+               
+
+                    break;
+                }
+
+                if (Compare2(i, i - 1, Items) == false)
+                {
+                    int smallest = Items[i];
+                    Items.RemoveAt(i);
+                    Items.AddAt(smallest, start);
+                }
+
+
+
+            }
+            return Items;
+        }
+
+        public bool Compare2(int item1, int item2, CustomList<int> Items) 
+        {
+            if (Items[item1] - Items[item2] >= 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+        public CustomList<int> SortCombined(CustomList<int> Items, int mobileCount, int start )
+        {
+            if (mobileCount == start+1)
+            {
+                return Items;
+            }
+
+            Items = Items.SortLargestFirst(Items, mobileCount, start);
+            Items = Items.SortSmallest(Items, mobileCount - 1, start);
+
+
+            return SortCombined(Items, mobileCount - 1, start + 1);
+
+        }
 
 
 
