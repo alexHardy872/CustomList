@@ -182,7 +182,7 @@ namespace CustomList
         //  //   //    //    //    ///    //   //  //  //  //  //  REMOVE METHODES
 
 
-
+/*
         public bool Remove(T valueToRemove)
         {
             if (count == 0)
@@ -236,8 +236,35 @@ namespace CustomList
             return false;
         } 
             
+    */
 
+        public bool Remove(T valueToRemove)
+        {
+            if (count == 0)
+            {
+                return false;
+            }
+            for ( int i = 0; i < count; i++)
+            {
+                if ( items[i].Equals(valueToRemove))
+                {
+                    
+                    for ( int j = i; j < count; j++)
+                    {
+                        items[j] = items[j+1];
+                    }
+                    break;
+                }
+                else
+                {
+                    items[i] = items[i];
+                }
+            }
+            DecrementCount();
+            return true;
+        }
       
+        /*
         public bool RemoveAt(int index)
         {
             if (count == 0)
@@ -289,6 +316,33 @@ namespace CustomList
             }
 
             return false;
+        } */
+
+        public bool RemoveAt(int index)
+        {
+            if (count == 0)
+            {
+                return false;
+            }
+            for (int i = 0; i < count; i++)
+            {
+                if (i == index)
+                {
+                   
+                    for (int j = i; j < count; j++)
+                    {
+                        items[j] = items[j + 1];
+                    }
+                    DecrementCount();
+                    break;
+                }
+                else
+                {
+                    items[i] = items[i];
+                }
+            }
+
+            return true;
         }
 
         private void DecrementCount()
@@ -299,7 +353,7 @@ namespace CustomList
 
 
         // ZIP
-        public CustomList<T> Zip( CustomList<T> newList) // SOME KIND OF TYPE RESTRICTION??
+        public CustomList<T> Zip( CustomList<T> newList) 
         {
             CustomList<T> zipped = new CustomList<T>();
             int zipCount = GetShortestCountOfTwoLists(newList);
@@ -394,9 +448,8 @@ namespace CustomList
         public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
         {
             CustomList<T> sum = new CustomList<T>();
-            CustomList<T> one = new CustomList<T>();
             CustomList<T> two = new CustomList<T>();
-            one = listOne;
+            
             two = listTwo;
 
 

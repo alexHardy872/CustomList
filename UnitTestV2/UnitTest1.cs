@@ -815,7 +815,7 @@ namespace UnitTestV2
             // arrange
             CustomList<int> testList = new CustomList<int>();
             CustomList<int> testList2 = new CustomList<int>();
-            CustomList<int> testList3 = new CustomList<int>();
+            
 
             testList.Add(1);
             testList.Add(2);
