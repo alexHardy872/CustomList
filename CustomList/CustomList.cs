@@ -240,28 +240,23 @@ namespace CustomList
 
         public bool Remove(T valueToRemove)
         {
-            if (count == 0)
-            {
-                return false;
-            }
             for ( int i = 0; i < count; i++)
             {
                 if ( items[i].Equals(valueToRemove))
-                {
-                    
+                {                                           ///////////// BUG
+                    DecrementCount();
                     for ( int j = i; j < count; j++)
                     {
                         items[j] = items[j+1];
                     }
-                    break;
+                    return true;
                 }
                 else
                 {
                     items[i] = items[i];
                 }
             }
-            DecrementCount();
-            return true;
+            return false;
         }
       
         /*
@@ -320,30 +315,25 @@ namespace CustomList
 
         public bool RemoveAt(int index)
         {
-            if (count == 0)
-            {
-                return false;
-            }
             for (int i = 0; i < count; i++)
             {
                 if (i == index)
                 {
-                   
+                    DecrementCount();
                     for (int j = i; j < count; j++)
                     {
                         items[j] = items[j + 1];
                     }
-                    DecrementCount();
-                    break;
+                    return true;
                 }
                 else
                 {
                     items[i] = items[i];
                 }
-            }
-
-            return true;
+            }    
+            return false;
         }
+
 
         private void DecrementCount()
         {

@@ -293,8 +293,43 @@ namespace UnitTestV2
             }
 
 
+        [TestMethod]
+        public void Remove_ListSize2Remove1_LastIndexGoesDown()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 1, 2 };
+            int expected = 2;
+            int actual;
 
-            [TestMethod]
+            // act
+            testList.Remove(1);
+           
+            actual = testList[0];
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Remove_ListSize2Remove1_CountGoesDown()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 1, 2 };
+            int expected = 1;
+            int actual;
+
+            // act
+            testList.Remove(1);
+
+            actual = testList.Count;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestMethod]
             public void Remove_RemoveIndexFromList_CountDecrements()
             {
                 // arrange
@@ -500,10 +535,27 @@ namespace UnitTestV2
             }
 
 
+        [TestMethod]
+        public void GrowArray_ExceedLaterCapacity_CapacityDoubles()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() {1,2,3,4,5,6,7,8};
+            int expected = 16;
+            int actual;
 
-            // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // ZIP METHODE TESTS // // // // //
+            // act
+            testList.Add(9);
 
-            [TestMethod]
+            actual = testList.Capacity;
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // ZIP METHODE TESTS // // // // //
+
+        [TestMethod]
             public void Zip_ZipTwoEqualLengthLists_FirstIndexEqual()
             {
                 // arrange
@@ -810,6 +862,32 @@ namespace UnitTestV2
 
         [TestMethod]
 
+        public void MinusOperatorOverLoad_DoesSubtract_CheckWholeList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 1, 2, 3, 4, 5, 6 };
+            CustomList<int> testList2 = new CustomList<int>(){1, 2, 3};
+            CustomList<int> expected = new CustomList<int>() { 4, 5, 6 };
+
+            int expectedCount = 3;
+            
+            // act
+            
+            CustomList<int> actual = (testList - testList2);
+            int actualCount = actual.Count;
+            // assert
+            for ( int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+
+            Assert.AreEqual(expectedCount, actualCount);
+        }
+
+      
+
+
+        [TestMethod]
         public void MinusOperatorOverLoad_DoesSubtract_ReturnsShortenedCount()
         {
             // arrange
