@@ -372,21 +372,25 @@ namespace CustomList
 
 
 
-        public void Sort<T>(int start, int end) where T: IComparable
+        public void Sort<T>(int start, int end) where T: IComparable // // Custom Sort similar to HEAP SORT
         {
-            if (end == start + 1)
+            if (count % 2 != 0 && end == start + 1)
             {
                 
             }
+            else if (count % 2 == 0 && end == start)
+            {
+
+            }
             else
             {
-                LargeSort<T>(start, end);
-                SmallSort<T>(start, end);
+                LargestValueToLastIndex<T>(start, end);
+                SmallestValueToFirstIndex<T>(start, end);
                 Sort<T>(start + 1, end - 1);
             }
         }
 
-        public void LargeSort<T>(int start, int end) where T: IComparable
+        public void LargestValueToLastIndex<T>(int start, int end) where T: IComparable
         {
             {
                 for (int i = start; i < end; i++)
@@ -404,20 +408,71 @@ namespace CustomList
             }
         }
 
-        public void SmallSort<T>(int start, int end) where T : IComparable
+        public void SmallestValueToFirstIndex<T>(int start, int end) where T : IComparable
         {
             for (int i = end - 1; i > start; i--)
             {
                 if (items[i].CompareTo(items[start]) < 0)
                 {
                     AddAt(items[i], start);
-                    RemoveAt(i+1);      
+                    RemoveAt(i + 1);
                 }
-            } 
+            }
         }
 
 
+        public int BinarySearch<T>(T target) where T : IComparable
+        {
+            int index = DivideAndConquer<T>(target, count / 2, -1 );
+            return index;
+        }
 
+
+        public int DivideAndConquer<T>(T target, int index, int lastIndex) where T : IComparable
+        {
+            if (target.CompareTo(items[index]) == 0)
+            {
+                return index;
+            }
+            // CHECK FOR INSERTABLE SPACE
+            if (Math.Abs(index - lastIndex) == 1)
+            {
+               if (items[index].CompareTo(target) < 0 && items[lastIndex].CompareTo(target) > 0)
+                {
+                    return lastIndex;
+                }
+               else
+                {
+                    return index;
+                }  
+            }
+           
+           
+            if (target.CompareTo(items[index]) < 0)  // target less than midpoint
+            {
+                if (lastIndex > -1)
+                {
+                    if (target.CompareTo(items[lastIndex]) > 0)
+                    {
+                        return DivideAndConquer<T>(target, (index + lastIndex) / 2, lastIndex);
+                    }
+                } 
+                return DivideAndConquer<T>(target, index/2, index);
+            }
+            else  //target more than midpoint
+            {
+                if (lastIndex > -1)
+                {
+                    if (target.CompareTo(items[lastIndex]) < 0)
+                    {
+                        return DivideAndConquer<T>(target, ((index + lastIndex) / 2), lastIndex);
+                    }
+                }
+               
+                return DivideAndConquer<T>(target, (index + count)/2, index);
+            }
+
+        }
 
 
 

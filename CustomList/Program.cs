@@ -16,22 +16,21 @@ namespace CustomList
 
 
 
-            // arrange
-            CustomList<string> testList = new CustomList<string>() { "p","o" };
-            CustomList<string> testList2 = new CustomList<string>() { "o", "p"};
+           
 
-            CustomList<int> testList3 = new CustomList<int>() {  4, 4 };
+            List<string> testList = new List<string>() { "Computer", "Zebra", "Apple", "Demon", "Lizard", "Rock", "Seltzer", "Boron", "King", "Jack", "Pumpkin", "Quite", "Velociraptor", "Walleye", "Xenu" };
+            testList.Sort();
+
+            foreach(string word in testList){
+                Console.WriteLine(word);
+            }
+            int index = testList.BinarySearch("Apple");
+            Console.WriteLine( "found "+testList[0]+" at "+ index);
 
 
-
-            // int actual = (testList - testList2).Count;
-            CustomList<string> result =  testList.Zip(testList2);
-
-            Console.WriteLine(result.ToString());
-            //Console.WriteLine(testList.Count);
+            int test = 5 / 2;
+            Console.WriteLine(test);
             Console.ReadLine();
-
-
         }
     }
 }
