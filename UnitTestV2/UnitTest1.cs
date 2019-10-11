@@ -1175,70 +1175,71 @@ namespace UnitTestV2
         // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // // SORT  // // // // //
 
 
-        //[TestMethod]
-        //public void Sort_CheckStartOfList_ReturnsIndex0()
-        //{
-        //    // arrange
-        //    CustomList<int> testList = new CustomList<int>() { 3, 2, 1 };
-            
-        //    int expected = 1;
+        [TestMethod]
+        public void Sort_CheckStartOfList_ReturnsIndex0()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 3, 2, 1 };
 
-        //    testList.Sort();
-        //    int actual = testList[0]
-        //    // assert
-        //    Assert.AreEqual(expected, actual);
-        //}
+            int expected = 1;
 
-        //[TestMethod]
-        //public void Sort_CheckEndOfList_ReturnsIndexLast()
-        //{
-        //    // arrange
-        //    CustomList<int> testList = new CustomList<int>() { 3, 2, 1 };
-           
-        //    int expected = 3;
-        //    testList.Sort();
-        //    int actual = testList[testList.Count-1];
-        //    // assert
-        //    Assert.AreEqual(expected, actual);
-        //}
+            testList.Sort<int>(0, testList.Count);
+            int actual = testList[0];
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
 
-        //[TestMethod]
-        //public void Sort_CheckList_ComparesAllValues()
-        //{
-        //    // arrange
-        //    CustomList<int> testList = new CustomList<int>() { 3, 2, 1, 5, 4 };
-           
-        //    CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5 };
+        [TestMethod]
+        public void Sort_CheckEndOfList_ReturnsIndexLast()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 3, 2, 1 };
 
-        //    testList.Sort();
-        //    CustomList<int> actual = testList;
-        //    // assert
-        //    for ( int i = 0; i < expected.Count; i++)
-        //    {
-        //        Assert.AreEqual(expected[i], actual[i]);
-        //    }
+            int expected = 3;
+            testList.Sort<int>(0, testList.Count);
+            int actual = testList[testList.Count-1];
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Sort_CheckList_ComparesAllValues()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 3, 2, 1, 5, 4 };
+
+            CustomList<int> expected = new CustomList<int>() { 1, 2, 3, 4, 5 };
+
+            testList.Sort<int>(0, testList.Count);
+            CustomList<int> actual = testList;
+            // assert
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], actual[i]);
+            }
+        }
 
 
 
 
-        //[TestMethod]
-        //public void SortLargestFirst_CheckEnd_ReturnsEndOfList()
-        //{
-        //    // arrange
-        //    CustomList<int> testList = new CustomList<int>() { 4,7,1 ,8,3, 2, 1 };
+        [TestMethod]
+        public void SortLargestFirst_CheckEnd_ReturnsEndOfList()
+        {
+            // arrange
+            CustomList<int> testList = new CustomList<int>() { 4, 7, 1, 8, 3, 2, 1 };
 
-        //    int expected = 8;
-        //    int expected2 = 1;
+            int expected = 8;
+            int expected2 = 1;
 
-        //    CustomList<int> TEST = testList.SortLargestFirst(testList);
-        //    CustomList<int> TEST2 = testList.SortSmallest(TEST);
+            CustomList<int> TEST = testList.SortLargestFirst(testList, testList.Count, 0);
+            CustomList<int> TEST2 = testList.SortSmallest(TEST, TEST.Count, 0);
 
-        //    int actual2 = TEST2[0];
-        //    int actual = TEST[testList.Count - 1];
-        //    // assert
-        //    Assert.AreEqual(expected, actual);
-        //    Assert.AreEqual(expected2, actual2);
-        //}
+            int actual2 = TEST2[0];
+            int actual = TEST[testList.Count - 1];
+            // assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected2, actual2);
+        }
 
         [TestMethod]
         public void SortLargestFirst_CheckFull_ReturnsWhole()

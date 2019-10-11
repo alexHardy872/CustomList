@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CustomList
 {
-    public class CustomList<T> : IEnumerable<T>
+    public class CustomList<T> : IEnumerable<T> where T : IComparable
     {
 
 
@@ -370,97 +370,56 @@ namespace CustomList
             return sum;    
         }
 
-        /*
-        public void Sort()  where T : CustomList<int>
+
+
+        public void Sort<T>(int start, int end) where T: IComparable
         {
-           
-            
-            for (int i = 0; i < count; i++)
+            if (end == start + 1)
             {
-                if (Compare(i, i+1) == true)
-                {
-                    Swap(i, i + 1);
-                }
-
-
-
-            } */
-
-            // Loop through array
                 
-            // for each item, loop through items UNTIL it finds an item lower, else put at end 
-                // check item and item+1, if item higher switch their index
-
-            // loop through again, if nothing switched stop
-
-           
-       // }
-
-        public CustomList<int> SortLargestFirst(CustomList<int> Items, int mobileCount, int start)
-        {
-            int largest;
-
-            for (int i = start; i < mobileCount; i++)
-            {       
-                if (i == mobileCount -1 )
-                {
-                    break;
-                }
-
-                if (Compare2(i, mobileCount - 1, Items) == true)
-                {
-                    largest = Items[i];
-                    Items.RemoveAt(i);
-                    Items.AddAt(largest, mobileCount-1);
-                }
-            }
-            return Items;
-        }
-
-        public CustomList<int> SortSmallest(CustomList<int> Items, int mobileCount, int start)
-        {  
-            if (mobileCount == start)
-            {
-                return Items;
-            }
-            for (int i = mobileCount-1; i > start; i--)
-            {
-                if (Compare2(i, start, Items) == false)
-                {
-                    int smallest = Items[i];
-                    Items.RemoveAt(i);
-                    Items.AddAt(smallest, start);
-                }
-            }
-            return Items;
-        }
-
-        public bool Compare2(int item1, int item2, CustomList<int> Items) 
-        {
-            if (Items[item1] - Items[item2] >= 0)
-            {
-                return true;
             }
             else
             {
-                return false;
+                LargeSort<T>(start, end);
+                SmallSort<T>(start, end);
+                Sort<T>(start + 1, end - 1);
             }
         }
 
-        public CustomList<int> SortCombined(CustomList<int> Items, int mobileCount, int start )
+        public void LargeSort<T>(int start, int end) where T: IComparable
         {
-            if (mobileCount == start+1)
             {
-                return Items;
+                for (int i = start; i < end; i++)
+                {
+                    if (i == end - 1)
+                    {
+                        break;
+                    }
+                    if (items[i].CompareTo(items[end-1]) >= 0)
+                    {
+                        AddAt(items[i], end);
+                        RemoveAt(i);  
+                    }
+                }   
             }
-            Items = Items.SortLargestFirst(Items, mobileCount, start);
-            Items = Items.SortSmallest(Items, mobileCount, start);
-            return SortCombined(Items, mobileCount - 1, start + 1);
+        }
+
+        public void SmallSort<T>(int start, int end) where T : IComparable
+        {
+            for (int i = end - 1; i > start; i--)
+            {
+                if (items[i].CompareTo(items[start]) < 0)
+                {
+                    AddAt(items[i], start);
+                    RemoveAt(i+1);      
+                }
+            } 
         }
 
 
-        // if larger than largest move to end
-        // if smaller than smallest move to start
+
+
+
 
 
 
