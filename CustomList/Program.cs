@@ -17,17 +17,18 @@ namespace CustomList
 
 
             // arrange
-            CustomList<int> testList = new CustomList<int>() { 1, 2, 4, 4, 4, 6 };
-            //CustomList<int> testList2 = new CustomList<int>() { 4, 4 };
-            CustomList<int> testList2 = new CustomList<int>() {  4, 4 };
+            CustomList<string> testList = new CustomList<string>() { "p","o" };
+            CustomList<string> testList2 = new CustomList<string>() { "o", "p"};
+
+            CustomList<int> testList3 = new CustomList<int>() {  4, 4 };
 
 
 
             // int actual = (testList - testList2).Count;
-            CustomList<int> testList3 = testList - testList2;
+            CustomList<string> result =  testList.Zip(testList2);
 
-            Console.WriteLine(testList3.ToString());
-            Console.WriteLine(testList.Count);
+            Console.WriteLine(result.ToString());
+            //Console.WriteLine(testList.Count);
             Console.ReadLine();
 
 

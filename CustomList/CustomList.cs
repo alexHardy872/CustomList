@@ -263,6 +263,7 @@ namespace CustomList
             int zipCount = GetShortestCountOfTwoLists(newList);
             for ( int i = 0; i < zipCount; i ++ )
             {
+               
                 zipped.Add(items[i]);
                 zipped.Add(newList[i]);
             }
@@ -337,12 +338,10 @@ namespace CustomList
         public static CustomList<T> operator + (CustomList<T> listOne, CustomList<T> listTwo)
         {
             CustomList<T> sum = new CustomList<T>();
-
             foreach (T item in listOne)
             {
                 sum.Add(item);
             }
-
             foreach (T item in listTwo)
             {
                 sum.Add(item);
@@ -354,31 +353,21 @@ namespace CustomList
         public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
         {
             CustomList<T> sum = new CustomList<T>();
-            CustomList<T> two = new CustomList<T>();
-            
-            two = listTwo;
-
-
+            CustomList<T> temp = new CustomList<T>();     
+            temp = listTwo;
             foreach (T item in listOne)
             {
-
-                if ((two.Contains(item)) == true)
+                if ((temp.Contains(item)) == true)
                 {
 
-                    two.Remove(item);
+                    temp.Remove(item);
                 }
                 else
                 {
                     sum.Add(item);
                 }
-
             }
-
-
-            return sum;
-
- 
-        
+            return sum;    
         }
 
         /*
@@ -412,55 +401,36 @@ namespace CustomList
             int largest;
 
             for (int i = start; i < mobileCount; i++)
-            {
-                
+            {       
                 if (i == mobileCount -1 )
                 {
                     break;
                 }
 
-                if (Compare2(i, i + 1, Items) == true)
+                if (Compare2(i, mobileCount - 1, Items) == true)
                 {
                     largest = Items[i];
                     Items.RemoveAt(i);
                     Items.AddAt(largest, mobileCount-1);
                 }
-
-
-
             }
             return Items;
         }
 
         public CustomList<int> SortSmallest(CustomList<int> Items, int mobileCount, int start)
-        {
-           
-
+        {  
             if (mobileCount == start)
             {
                 return Items;
             }
-
             for (int i = mobileCount-1; i > start; i--)
             {
-
-                if (i == start+1)
-                {
-
-               
-
-                    break;
-                }
-
-                if (Compare2(i, i - 1, Items) == false)
+                if (Compare2(i, start, Items) == false)
                 {
                     int smallest = Items[i];
                     Items.RemoveAt(i);
                     Items.AddAt(smallest, start);
                 }
-
-
-
             }
             return Items;
         }
@@ -475,7 +445,6 @@ namespace CustomList
             {
                 return false;
             }
-            
         }
 
         public CustomList<int> SortCombined(CustomList<int> Items, int mobileCount, int start )
@@ -484,17 +453,14 @@ namespace CustomList
             {
                 return Items;
             }
-
             Items = Items.SortLargestFirst(Items, mobileCount, start);
-            Items = Items.SortSmallest(Items, mobileCount - 1, start);
-
-
+            Items = Items.SortSmallest(Items, mobileCount, start);
             return SortCombined(Items, mobileCount - 1, start + 1);
-
         }
 
 
-
+        // if larger than largest move to end
+        // if smaller than smallest move to start
 
 
 
