@@ -4,21 +4,17 @@
 
 # Operator Override (" - ")
 
-"-" override
+"-" override [static ovverride method in the `CustomList<T>` class ]
 
 ---
 ## Description: 
 
    > When using the "-" operator on two generic `CustomList<T> `Objects of the same type,
     Any values found in the second list will be removed from the first list.
-
    > Each ocurance of a value in the second list is seperately removed from the first,
     so that if there are multiple instances of the value in the first object and only
     one in the second, the first occurence ONLY will be removed.
-
-> The call can also be made in succession, 
-
->   (list1 - list2 - list3 - list4)  will calculate as:
+> The call can also be made in succession so that(list1 - list2 - list3 - list4)  will calculate as:
 
        
 
@@ -26,38 +22,13 @@
 ---
 ## Syntax: 
 
- Calling the methode:
-
-argument1 - arguement2 = reult;
-
+ Calling the method: assuming both arguements are of type `CustomList<T>`
+```
+arguement1 - arguement2 = reult;
+```
  arguement1 is the first instance in line ("arguement1 - arguement2")
-```
-public satic ListClassName<T> operator - (ListClassName<T> input1 , ListClassName<T> input2)
-{
-        ListClassName<T> result = new ListClassName<T>(); 
-        ListClassName<T> temp = new ListClassName<T>();
-        
-        temp = input2;                          
 
-        foreach (T item in input1)            
-        {
 
-            if ((temp.Contains(item)) == true)  
-                                                    
-            {
-
-                temp.Remove(item);              
-            }
-            else                                
-            {
-                result.Add(item);
-            }
-        }
-        return result;                          
-
-    }
-}
-```
 ---
 ## Parameters: 
 
@@ -92,7 +63,7 @@ public satic ListClassName<T> operator - (ListClassName<T> input1 , ListClassNam
 ```
 public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> listTwo)
 {
-    CustomList<T> remaining = new CustomList<T>();
+    CustomList<T> newList = new CustomList<T>();
     CustomList<T> two = new CustomList<T>();
     
     two = listTwo;
@@ -107,10 +78,10 @@ public static CustomList<T> operator -(CustomList<T> listOne, CustomList<T> list
         }
         else
         {
-            remaining.Add(item);
+            newList.Add(item);
         }
     }
-    return remaining;
+    return newList;
 
 }
 

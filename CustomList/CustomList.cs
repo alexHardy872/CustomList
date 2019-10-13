@@ -435,16 +435,28 @@ namespace CustomList
                 return index;
             }
             // CHECK FOR INSERTABLE SPACE
-            if (Math.Abs(index - lastIndex) == 1)
+            if (Math.Abs(index - lastIndex) == 1 || index == lastIndex)
             {
                if (items[index].CompareTo(target) < 0 && items[lastIndex].CompareTo(target) > 0)
                 {
                     return lastIndex;
                 }
-               else
+                else if (items[index].CompareTo(target) > 0 && items[lastIndex].CompareTo(target) < 0)
                 {
                     return index;
-                }  
+                }
+                else
+                {
+                   
+                    if (target.CompareTo(items[index]) > 0)
+                    {
+                        return index + 1;
+                    }
+                    else
+                    {
+                        return index;
+                    }
+                }
             }
            
            
@@ -472,6 +484,7 @@ namespace CustomList
                 return DivideAndConquer<T>(target, (index + count)/2, index);
             }
 
+            
         }
 
 

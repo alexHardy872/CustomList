@@ -1317,6 +1317,48 @@ namespace UnitTestV2
 
         }
 
+        //fails this, must be in the +/- 1 constion of methode
+
+       [TestMethod]
+        public void BinarySearch_FindSpotAndInsertManyItems_ReturnsCorrectIndex()
+        {
+            CustomList<int> expected = new CustomList<int>();
+            for (int i = 1; i <= 100; i++)
+            {
+                expected.Add(i);
+            }
+            CustomList<int> testList = new CustomList<int>();
+            for (int i = 1; i <= 100; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    testList.Add(i);
+                }
+            }
+            CustomList<int> testList2 = new CustomList<int>();
+            for (int i = 1; i <= 100; i++)
+            {
+                if (i % 2 == 0)
+                {
+                    testList2.Add(i);
+                }
+            }
+            for (int i = 0; i < testList2.Count; i++)
+            {
+                int index = testList.BinarySearch<int>(testList2[i]);
+                testList.AddAt(testList2[i], index);
+            }
+
+
+
+            for (int i = 0; i < expected.Count; i++)
+            {
+                Assert.AreEqual(expected[i], testList[i]);
+            }
+
+
+        }
+
 
 
 
